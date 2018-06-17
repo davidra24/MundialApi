@@ -1,8 +1,9 @@
+
 var pg = require('pg');
 var conString = process.env.DATABASE_URL+'?ssl=true';
 var client = new pg.Client(conString);
 client.connect();
-module.exports = query{
+module.exports = {
   getAllUsers: getAllUsers,
   getSingleUser: getSingleUser,
   createUser: createUser,
@@ -48,7 +49,7 @@ function createUser(req, res, next) {
       res.status(200)
         .json({
           status: 'success',
-          message: 'Inserted one puppy'
+          message: 'Inserted one user'
         });
     })
     .catch(function (err) {
@@ -70,9 +71,9 @@ function updateUser(req, res, next) {
       return next(err);
     });
 }
-function removePuppy(req, res, next) {
+function removeUser(req, res, next) {
   var usrID = parseInt(req.params.id);
-  db.result('delete from pups where id = $1', usrID)
+  db.result('delete from usuarios where id = $1', usrID)
     .then(function (result) {
       /* jshint ignore:start */
       res.status(200)

@@ -1,17 +1,17 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
-var db = require('../models/queries');
+const adb = require('../models/queries');
 /*--------------- Usuarios -------------------*/
-router.get('/api/users', db.getAllUsers);
-router.get('/api/users/:id', db.getSingleUser);
-router.post('/api/users', db.createUser);
-router.put('/api/users/:id', db.updateUser);
-router.delete('/api/users/:id', db.removeUser);
+router.get('/api/users', adb.getAllUsers);
+router.get('/api/users/:id', adb.getSingleUser);
+router.post('/api/users', adb.createUser);
+router.put('/api/users/:id', adb.updateUser);
+router.delete('/api/users/:id', adb.removeUser);
 
 module.exports = router;
